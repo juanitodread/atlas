@@ -1,0 +1,7 @@
+version: '3.2'
+services:
+  atlas-api-server:
+    restart: always
+    image: atlas
+    ports:
+      - 80:8080
