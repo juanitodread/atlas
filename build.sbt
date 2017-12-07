@@ -8,5 +8,6 @@ scalaVersion := "2.11.8"
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http" % "10.0.10",
   "com.typesafe.akka" %% "akka-http-testkit" % "10.0.10" % "test",
-  "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.1" % "test",
+  "org.apache.kafka" %% "kafka" % "1.0.0"
 )
