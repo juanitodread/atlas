@@ -17,4 +17,6 @@ WORKDIR /atlas
 
 ADD . /atlas
 
-CMD ["sbt", "run"]
+RUN chmod +x start.sh
+
+CMD ["./start.sh"]
