@@ -8,3 +8,14 @@ services:
       - 80:8080
     volumes:
       - '.:/atlas'
+    depends_on:
+      - kafka
+
+  kafka:
+    image: spotify/kafka
+    ports:
+      - 9092:9092
+      - 2181:2181
+    environment:
+      TOPICS: test-topic
+      ADVERTISED_HOST: 192.168.100.10
