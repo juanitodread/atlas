@@ -1,6 +1,7 @@
 package org.juanitodread.atlas.iot.actor
 
 import akka.actor.{ Actor, ActorLogging, Props }
+import DeviceManager._
 
 object Device {
   def props(groupId: String, deviceId: String): Props = Props(new Device(groupId, deviceId))
@@ -21,6 +22,15 @@ class Device(groupId: String, deviceId: String) extends Actor with ActorLogging 
   override def postStop(): Unit = log.info("Device actor {}-{} stopped", groupId, deviceId)
 
   override def receive: Receive = {
+    case RequestTrackDevice(`groupId`, `deviceId`) =>
+      sender() ! DeviceRegistered
+
+    case RequestTrackDevice(groupId, deviceId) =>
+      log.warning(
+        "Ignoring TrackDevice request for {}-{}.This actor is responsible for {}-{}.",
+        groupId, deviceId, this.groupId, this.deviceId
+      )
+
     case RecordTemperature(id, value) =>
       log.info(s"Recorded temperature reading $value with $id")
       lastTemperatureReading = Some(value)

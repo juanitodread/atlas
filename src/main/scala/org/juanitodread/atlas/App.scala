@@ -11,7 +11,8 @@ import scala.io.StdIn
 
 object App extends RequestTimeout {
   def main(args: Array[String]): Unit = {
-    startIot()
+    println("Starting the app...")
+    startApi()
   }
 
   private def startIot(): Unit = {
@@ -36,7 +37,7 @@ object App extends RequestTimeout {
     val api = new RestApi(system, requestTimeout()).routes()
 
     Http().bindAndHandle(api, "0.0.0.0", 8080)
-    println("Server started at 0.0.0.0")
+    println("Server started at 0.0.0.0:80")
   }
 }
 
